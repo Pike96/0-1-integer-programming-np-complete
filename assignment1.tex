@@ -1,6 +1,8 @@
 \documentclass[mathserif]{beamer}
 \usepackage{amsmath}
 
+\renewcommand{\qed}{\hfill\square}
+
 \begin{document}
 
 \begin{frame}
@@ -37,7 +39,7 @@ x_{i1} \vee x_{i2} \vee x_{i3}
 
 and each literal is either a vairable $v$ or a negated variable $\neg v$
 
-Assume our variables are $v_1, \ldots, v_m$
+Assume our variables are $v_1,\ \ldots\ ,\ v_m$
 
 \begin{frame}
 We turn $\phi$ into an arithmatic formula $\Phi$ as follows
@@ -58,5 +60,21 @@ z_i \in \mathbb{Z}\ \text{for all}\ i
 
 Lemma 1: $\Phi$ is satisfiable iff the integer program is feasible
 \end{frame}
+
+\begin{frame}
+Proof: Assume that $\phi$ is satisfiable and let $v^*$ be a satisfying
+assignment. Construct $z^*$ by setting $z^*_i = 1$ iff $v^*_i$ is true. Then
+$\Phi \leq 1$.
+Conversly, if $z^*$ is a feasible solution for the integer program, each clause
+must have an integer value of at least one. Hence the corresponding truth
+asssignment satisfies $\phi$.\\
+$\qed$
+
+Theorem: 0-1 Integer Programming is NP complete\\
+
+Proof: The Lemma above shows that 0-1 IP is NP-hard. 
+\end{frame}
+
+
 
 \end{document}
