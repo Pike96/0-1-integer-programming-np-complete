@@ -18,8 +18,8 @@ x \in \mathbb{Z}^n
 where $c$ and $b$ are vectors and $A$ is a matrix.
 
 \end{frame}
-\begin{frame}
 
+\begin{frame}
 A special case of integer programming is zero-one integer programming:
 \begin{align*}
 \text{maximize}\ c^Tx\\
@@ -29,6 +29,16 @@ x \in \{0, 1\}^n
 \end{align*}
 \end{frame}
 
+\begin{frame}
+Prove that 0-1 integer programming is NP-complete
+\begin{itemize}
+\item Prove that it is in NP using certificate definition of NP
+\item Reduce SAT to 0-1 integer programming
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
 Reduce SAT to 0-1 integer programming
 
 \begin{align*}
@@ -37,45 +47,47 @@ Reduce SAT to 0-1 integer programming
 be a formula in conjunctive normal form. Each $C_i$ is the disjunction of 3 literals
 
 \begin{align*}
-x_{i1} \vee x_{i2} \vee x_{i3}
+y_{i1} \vee y_{i2} \vee y_{i3}
 \end{align*}
 
 and each literal is either a vairable $v$ or a negated variable $\neg v$
 
 Assume our variables are $v_1,\ \ldots\ ,\ v_m$
 
+\end{frame}
+
 \begin{frame}
 We turn $\phi$ into an arithmatic formula $\Phi$ as follows
 \begin{itemize}
 \item Introduce an integer variable $z_i$ for every boolean variable $v_i$. The integer variable is contrained to take values zero and one, zero represents false and one represents true
-\item Replace $\wedge$ by $\times$, $\vee$ by $+$ and variables $v_j$ by $z_j$ and negated variables $\neg v$ by $1 - z_j$
+\item Replace $\wedge$ by $\times$, $\vee$ by $+$ and variables $v_j$ by $z_j$
+and negated variables $\neg v_j$ by $1 - z_j$
 \item $\Phi$ be the arithmatic formula obtained this way
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-The ILP is
+The Integer Program is as follows:
 \begin{align*}
 \Phi \leq 1\\
 0 \leq z_i \leq 1\\
 z_i \in \mathbb{Z}\ \text{for all}\ i
 \end{align*}
 
-Lemma 1: $\Phi$ is satisfiable iff the integer program is feasible
-\end{frame}
-
-\begin{frame}
-Proof: Assume that $\phi$ is satisfiable and let $v^*$ be a satisfying
+\textbf{Lemma:} $\Phi$ is satisfiable iff the integer program is feasible\\
+\textbf{Proof:} Assume that $\phi$ is satisfiable and let $v^*$ be a satisfying
 assignment. Construct $z^*$ by setting $z^*_i = 1$ iff $v^*_i$ is true. Then
 $\Phi \leq 1$.
 Conversly, if $z^*$ is a feasible solution for the integer program, each clause
 must have an integer value of at least one. Hence the corresponding truth
 asssignment satisfies $\phi$.\\
 $\qed$
+\end{frame}
 
-Theorem: 0-1 Integer Programming is NP complete\\
+\begin{frame}
 
-Proof: The Lemma above shows that 0-1 IP is NP-hard. Using the certificate
+\textbf{Theorem:} 0-1 Integer Programming is NP complete\\
+\textbf{Proof:} The Lemma above shows that 0-1 IP is NP-hard. Using the certificate
 definition of NP. The 0-1 integer program $\phi$ is feasible if there is a
 vector $k \in \mathbb{Z}^n$ which satisfies the conditions $Ak \leq b$ and $0
 \leq k \leq 1$ and has the size $O(n)$
