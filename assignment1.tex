@@ -15,7 +15,10 @@ x \leq 0,\\
 x \in \mathbb{Z}^n
 \end{align*}
 
-\pause
+where $c$ and $b$ are vectors and $A$ is a matrix.
+
+\end{frame}
+\begin{frame}
 
 A special case of integer programming is zero-one integer programming:
 \begin{align*}
@@ -72,7 +75,10 @@ $\qed$
 
 Theorem: 0-1 Integer Programming is NP complete\\
 
-Proof: The Lemma above shows that 0-1 IP is NP-hard. 
+Proof: The Lemma above shows that 0-1 IP is NP-hard. Using the certificate
+definition of NP. The 0-1 integer program $\phi$ is feasible if there is a
+vector $k \in \mathbb{Z}^n$ which satisfies the conditions $Ak \leq b$ and $0
+\leq k \leq 1$ and has the size $O(n)$
 \end{frame}
 
 
