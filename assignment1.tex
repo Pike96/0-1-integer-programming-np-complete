@@ -3,9 +3,15 @@
 
 \renewcommand{\qed}{\hfill\square}
 
+\title{NP-completeness of 0-1 Integer Programming}
+\author{Kurt McAlpine, 2004750}
+
 \begin{document}
 
+\frame{\titlepage}
+
 \begin{frame}
+\frametitle{Description}
 So Integer Programming is an optimisation problem in the following form.
 
 \begin{align*}
@@ -20,6 +26,7 @@ where $c$ and $b$ are vectors and $A$ is a matrix.
 \end{frame}
 
 \begin{frame}
+\frametitle{Description}
 A special case of integer programming is zero-one integer programming:
 \begin{align*}
 \text{maximise}\ c^Tx\\
@@ -30,6 +37,7 @@ x \in \{0, 1\}^n
 \end{frame}
 
 \begin{frame}
+\frametitle{Plan}
 Prove that 0-1 integer programming is NP-complete
 \begin{itemize}
 \item Prove that it is in NP using certificate definition of NP
