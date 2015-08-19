@@ -49,8 +49,9 @@ Prove that 0-1 integer programming is NP-complete
 \frametitle{Prove that it is in NP using certificate definition of NP}
 \textbf{Lemma:} 0-1 Integer Programming is in NP\\
 \textbf{Proof:} Using the certificate definition of NP. The 0-1 integer program
-$\phi$ is feasible if there is a vector $k \in \mathbb{Z}^n$ which satisfies
-the conditions $Ak \leq b$ and $0 \leq k \leq 1$ and has the size $O(n)$
+is feasible if there is a vector $k \in \mathbb{Z}^n$ which satisfies the
+conditions $Ak \leq b$ and $0 \leq k_i \leq 1$ for all $i$, and has the size
+$O(n)$
 \end{frame}
 
 \begin{frame}
@@ -58,15 +59,18 @@ the conditions $Ak \leq b$ and $0 \leq k \leq 1$ and has the size $O(n)$
 \begin{align*}
 \text{Let}\ \phi = C_1 \wedge C_2 \wedge \ldots \wedge C_n\
 \end{align*}
-be a boolean formula in conjunctive normal form. Each $C_i$ is the disjunction of 3 literals
-
+\begin{center}
+be a boolean formula in conjunctive normal form. Each $C_i$ is the disjunction of 3 literals.
+\end{center}
 \begin{align*}
 y_{i1} \vee y_{i2} \vee y_{i3}
 \end{align*}
 
-and each literal is either a variable $v$ or a negated variable $\neg v$
+\begin{center}
+Each literal is either a variable $v$ or a negated variable $\neg v$.\\
 
-Assume our variables are $v_1,\ \ldots\ ,\ v_m$
+Assume our variables are $v_1,\ \ldots\ ,\ v_n$.
+\end{center}
 
 \end{frame}
 
@@ -75,8 +79,8 @@ Assume our variables are $v_1,\ \ldots\ ,\ v_m$
 We turn $\phi$ into an arithmetic formula $\Phi$ in the following way:
 \begin{itemize}
 \item Introduce an integer variable $z_i$ for every boolean variable $v_i$. The
-integer variable takes the value of either 0 or 1. 0 represents false and 1
-represents true
+integer variable takes the value of either $0$ or $1$.\\$0$ represents false and
+$1$ represents true.
 \item Replace $\wedge$ with $\times$, $\vee$ with $+$ and variables $v_j$ with
 	$z_j$ and negated variables $\neg v_j$ with $1 - z_j$
 \item $\Phi$ is the arithmetic formula obtained from this procedure
@@ -87,9 +91,8 @@ represents true
 \frametitle{Reduce 3SAT to 0-1 integer programming}
 The Integer Program is as follows:
 \begin{align*}
-\Phi \leq 1\\
-0 \leq z_i \leq 1\\
-z_i \in \mathbb{Z}\ \text{for all}\ i
+\Phi \geq 1\\
+0 \leq z_i \leq 1\ \text{for all}\ i
 \end{align*}
 
 \textbf{Lemma:} $\phi$ is satisfiable iff the integer program is feasible\\
