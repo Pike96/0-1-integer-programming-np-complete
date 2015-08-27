@@ -1,2 +1,4 @@
 all:
-	pdflatex assignment1.tex
+	pdflatex *.tex
+spellcheck:
+	aspell --lang=en_GB --mode=tex check *.tex
