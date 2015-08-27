@@ -8,7 +8,7 @@
 Integer programming is defined as the following optimisation problem:
 
 \begin{align}
-	max \{ c^Tx : Ax \leq b, x \in \mathbb{Z}^n\}
+	max \{ c^\top x : Ax \leq b, x \in \mathbb{Z}^n\}
 \end{align}
 
 Where $A$ is an $m \times n$ integer matrix for $m,n \in \mathbb{N}$, $b \in
@@ -39,6 +39,14 @@ each value:\\
 ~ $n$ multiplcations $O(n)$\\
 ~ $n - 1$ additions $O(n)$\\
 ~ $O(n) + O(n) = O(n)$\\
-~ Doing this for $m$ rows of $A$, $m \cdot O(n) = O(m \cdot n )$
+~ Doing this for $m$ rows of $A$, $m \cdot O(n) = O(m \cdot n )$\\
+
+2. Compare component wise each element of $(Ax)$ with each element of $b$, $m$
+comparisions is $O(m)$\\
+
+Final time complexity is $O(m \cdot n) + O(m) = O(m \cdot n)$
+
+0-1 integer programming $\in \mathit{NP}$ \qed
+
 
 \end{document}
