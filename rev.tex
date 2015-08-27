@@ -1,9 +1,15 @@
-\documentclass[mathserif,handout]{beamer}
+\documentclass[mathserif]{beamer}
 \usepackage{amsmath}
 
-%\renewcommand{\qed}{\hfill\square}
+\title{NP-completeness of 0-1 Integer Programming}
+\author{Kurt McAlpine, 2004750}
 
 \begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Description}
 
 Integer programming is defined as the following optimisation problem:
 
@@ -17,13 +23,23 @@ Where $A$ is an $m \times n$ integer matrix for $m,n \in \mathbb{N}$, $b \in
 0-1 integer programming is a special case of integer programming where $x \in
 \{0,1\}^n$
 
-Reformulating the integer programming optimisation problem into a descision
+\end{frame}
+
+\begin{frame}
+\frametitle{Description}
+
+Reformulating the integer programming optimisation problem into a decision
 problem so that I can give a proof of NP-completeness.\\
 
 ``Given $A$ and $b$ does there exist an $x$ such that the following condition
 is satisfied $Ax \geq b$''
 
-To show 0-1 integer programming is in NP we describe a turing machine M that
+\end{frame}
+
+\begin{frame}
+\frametitle{0-1 Integer Programming is in NP}
+
+To show 0-1 integer programming is in NP we describe a Turing machine M that
 can verify an instance in polynomial time.\\
 
 $M = $``On input $(A, b, x)$\\
@@ -32,21 +48,97 @@ $M = $``On input $(A, b, x)$\\
 3. ~ if $(Ax)_i > b_i$ reject\\
 4. accept
 
+\end{frame}
+
+
+\begin{frame}
+\frametitle{0-1 Integer Programming is in NP}
 
 Time complexity of the verifier:\\
 1. Multiply each component of a row of $A$ with each component of $x$ and sum
 each value:\\
-~ $n$ multiplcations $O(n)$\\
+~ $n$ multiplications $O(n)$\\
 ~ $n - 1$ additions $O(n)$\\
 ~ $O(n) + O(n) = O(n)$\\
 ~ Doing this for $m$ rows of $A$, $m \cdot O(n) = O(m \cdot n )$\\
 
 2. Compare component wise each element of $(Ax)$ with each element of $b$, $m$
-comparisions is $O(m)$\\
+comparisons is $O(m)$\\
 
 Final time complexity is $O(m \cdot n) + O(m) = O(m \cdot n)$
 
 0-1 integer programming $\in \mathit{NP}$ \qed
+
+\end{frame}
+
+\begin{frame}
+\frametitle{3SAT reduction to Integer Programming}
+
+Reduction of 3SAT with $n$ variables and $m$ clauses to an instance of integer
+programming where $Ax \geq b$\\
+
+Definition. 0-1 integer programming is feasible iff $Ax \geq b$ holds\\
+
+3SAT is a 3cnf boolean formula\\
+
+\begin{align*}
+C_1 \wedge C_2 \wedge \ldots \wedge C_m
+\end{align*}
+
+Were $C_i$ is a disjunction of 3 literals
+
+\begin{align*}
+	y_{i1} \vee y_{i2} \vee y_{i3}
+\end{align*}
+
+a literal may be negated i.e. $\neg y_{i1}$
+
+\end{frame}
+
+\begin{frame}
+\frametitle{3SAT reduction to Integer Programming}
+
+Let the 3SAT formula $S$ have clauses $C_1,\ldots,C_m$ and variables
+$v_1,\ldots,v_n$\\
+
+If $S$ is satisfiable for each clause there has to be at least one boolean
+variable $v_i$ that is true or a negated variable $\neq v_j$ that evaluates to
+true. Each cluase of $S$ can be represented as an inequality by replacing
+boolean variables $v_i$ with integer variables $x_i$ and negated boolean
+variables $\neg v_j$ with $1 - x_j$ and replacing disjunction with addition. An
+example of a transformation is the following:
+
+\begin{align*}
+	y_{i1} \vee y_{i2} \vee y_{i3}\\
+	x_{1} \vee x_{2} \vee x_{3} \geq 1\\
+	\text{or}\\
+	\neg y_{i1} \vee y_{i2} \vee y_{i3}\\
+	1 - x_{1} \vee x_{2} \vee x_{3} \geq 1
+\end{align*}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{3SAT reduction to Integer Programming}
+
+If 3SAT is satisfiable 0-1 integer programming is feasible. Since there is a satisfiable assignment for $S$, at least one variable in each
+clause must be true or some negated variable evaluates to true. So for each
+clause there is an inequality that evaluates to true.
+
+If integer programming is feasible 3SAT is satisfiable. If integer is feasible
+each inequality holds, therefor there must be an integer variable equal to 1 or
+some $1 - x_i$ is equal to 1, therefor each corresponding cluase $C_i$ has at
+least one boolean variable that is true or a negated variable that evaluates to
+true.
+
+This implies that 0-1 integer programming is NP-hard.
+
+Therefor this 0-1 integer programming $\in \mathit{NP}$, 0-1 integer
+programming is NP-complete. \qed
+
+\end{frame}
+
+
 
 
 \end{document}
